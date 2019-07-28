@@ -37,6 +37,37 @@
         <li <?php echo ($nav_sub == 'murid')? $active :""; ?>>
           <a href="<?php echo base_url('master/murid');?>"><i class="fa fa-ellipsis-v"></i>Data Murid</a>
         </li>
+        <li <?php echo ($nav_sub == 'jadwal')? $active :""; ?>>
+          <a href="<?php echo base_url('master/jadwal');?>"><i class="fa fa-ellipsis-v"></i>Jadwal Mata Pelajaran</a>
+        </li>
+       
+      </ul>
+    </li>
+
+    <li class="treeview <?php echo ($nav_top == 'Laporan')? $class :""; ?>">
+      <a href="#">
+        <i class="fa fa-file-pdf-o"></i>
+        <span>Laporan</span>
+        <span class="pull-right-container">
+          <i class="fa fa-angle-left pull-right"></i>
+        </span>
+      </a>
+      <ul class="treeview-menu">
+        <li <?php echo ($nav_sub == 'guru')? $active :""; ?>>
+          <a href="<?php echo base_url('laporan/guru');?>"><i class="fa fa-ellipsis-v"></i>Data Guru</a>
+        </li>
+        <li <?php echo ($nav_sub == 'mapel')? $active :""; ?>>
+          <a href="<?php echo base_url('laporan/mapel');?>"><i class="fa fa-ellipsis-v"></i>Data Mata Pelajaran</a>
+        </li>
+        <li <?php echo ($nav_sub == 'ruangan')? $active :""; ?>>
+          <a href="<?php echo base_url('laporan/ruangan');?>"><i class="fa fa-ellipsis-v"></i>Data Ruangan</a>
+        </li>
+        <li <?php echo ($nav_sub == 'murid')? $active :""; ?>>
+          <a href="<?php echo base_url('laporan/murid');?>"><i class="fa fa-ellipsis-v"></i>Data Murid</a>
+        </li>
+        <li <?php echo ($nav_sub == '')? $active :""; ?>>
+          <a href="<?php echo base_url('laporan/murid');?>"><i class="fa fa-ellipsis-v"></i>Jadwal Mata Pelajaran</a>
+        </li>
        
       </ul>
     </li>

@@ -280,4 +280,20 @@ class Master extends CI_Controller
 				}
 
             }
+
+            public function jadwal()
+            {
+                $data['admin']					= $this->db->get_where('admin', array('id' => 1))->row();
+                $data['table']                  = $this->crud_models->get_all_data('tb_jadwal')->result();
+				$data['script_top']    			= 'admin/script_top';
+				$data['script_bottom']  		= 'admin/script_btm';
+				$data['admin_nav']				= 'admin/admin_nav';
+				$data['judul'] 					= 'Master';
+				$data['sub_judul'] 				= 'jadwal';
+				$data['content'] 				= 'master/jadwal';
+				$data['nav_top']				= 'master';
+				$data['nav_sub']				= 'jadwal';
+				$this->load->view('admin/jadwal', $data);
+
+            }
         }
