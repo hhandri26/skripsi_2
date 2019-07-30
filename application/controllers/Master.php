@@ -9,15 +9,18 @@ class Master extends CI_Controller
 				$this->load->helper('form', 'security');
 				$this->load->library('form_validation');
 				$this->load->model('crud_models');
-				$this->load->model('security_models');
+                $this->load->model('security_models');
+                $this->load->model('master_models');
 				$this->security_models->get_security();
 
             }
 
             public function guru()
             {
+
                 $data['admin']					= $this->db->get_where('admin', array('id' => 1))->row();
-                $data['table']                  = $this->crud_models->get_all_data('tb_guru')->result();
+                $data['table']                  = $this->master_models->get_table_guru()->result();
+                $data['mapel']                  = $this->crud_models->get_all_data('tb_mapel')->result();
 				$data['script_top']    			= 'admin/script_top';
 				$data['script_bottom']  		= 'admin/script_btm';
 				$data['admin_nav']				= 'admin/admin_nav';
@@ -34,7 +37,9 @@ class Master extends CI_Controller
             {
                 $data = array(
                     "kd_guru"	=> $this->input->post('kd_guru'),
-                    "nama_guru" => $this->input->post('nama_guru')
+                    "nama_guru" => $this->input->post('nama_guru'),
+                    "jenis_kelamin" => $this->input->post('jenis_kelamin'),
+                    "mapel" => $this->input->post('mapel')
                 );
 
                 if($this->crud_models->add_data($data,'tb_guru')){
@@ -53,7 +58,9 @@ class Master extends CI_Controller
                 $id 		= $this->input->post('id');
 				$data       = array(
                                         "kd_guru"	=> $this->input->post('kd_guru'),
-                                        "nama_guru" => $this->input->post('nama_guru')
+                                        "nama_guru" => $this->input->post('nama_guru'),
+                                        "jenis_kelamin" => $this->input->post('jenis_kelamin'),
+                                        "mapel" => $this->input->post('mapel')
                                     );
 
 				if($this->crud_models->edit_data($data,$id,'tb_guru')){
@@ -217,7 +224,8 @@ class Master extends CI_Controller
             public function murid()
             {
                 $data['admin']					= $this->db->get_where('admin', array('id' => 1))->row();
-                $data['table']                  = $this->crud_models->get_all_data('tb_murid')->result();
+                $data['table']                  = $this->master_models->get_data_murid()->result();
+                $data['kelas']                  = $this->crud_models->get_all_data('tb_ruangan')->result();
 				$data['script_top']    			= 'admin/script_top';
 				$data['script_bottom']  		= 'admin/script_btm';
 				$data['admin_nav']				= 'admin/admin_nav';
@@ -234,7 +242,9 @@ class Master extends CI_Controller
             {
                 $data = array(
                     "nisn"	=> $this->input->post('nisn'),
-                    "nama_murid" => $this->input->post('nama_murid')
+                    "nama_murid" => $this->input->post('nama_murid'),
+                    "jenis_kelamin"	=> $this->input->post('jenis_kelamin'),
+                    "kelas" => $this->input->post('kelas')
                 );
 
                 if($this->crud_models->add_data($data,'tb_murid')){

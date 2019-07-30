@@ -23,6 +23,25 @@
                             <input type="text" class="form-control" id="nama_murid" name="nama_murid">
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-lg-4 col-sm-4 control-label">Jenis Kelamin</label>
+                        <div class="col-lg-8">
+                            <select class="form-control" id="nama_guru" name="jenis_kelamin">
+                                <option value="L">Laki - laki</option>
+                                <option value="P">Perempuan</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-4 col-sm-4 control-label">Kelas & Ruangan</label>
+                        <div class="col-lg-8">
+                            <select class="form-control" id="kelas" name="kelas">
+                                <?php foreach ($kelas as $row){;?>
+                                    <option value="<?php echo $row->id;?>"><?php echo $row->nama_ruangan;?></option>
+                                <?php };?>
+                            </select>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                    
@@ -57,6 +76,25 @@
                                 <input type="hidden" id="id" name="id">
                             </div>
                         </div>
+                        <div class="form-group">
+                        <label class="col-lg-4 col-sm-4 control-label">Jenis Kelamin</label>
+                        <div class="col-lg-8">
+                            <select class="form-control" id="nama_guru" name="jenis_kelamin">
+                                <option value="L">Laki - laki</option>
+                                <option value="P">Perempuan</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-4 col-sm-4 control-label">Kelas & Ruangan</label>
+                        <div class="col-lg-8">
+                            <select class="form-control" id="kelas" name="kelas">
+                                <?php foreach ($kelas as $row){;?>
+                                    <option value="<?php echo $row->id;?>"><?php echo $row->nama_ruangan;?></option>
+                                <?php };?>
+                            </select>
+                        </div>
+                    </div>
                     </div>
                 <div class="modal-footer">
                     
@@ -104,6 +142,8 @@
             <th>No</th>
             <th>NISN</th>
             <th>Nama Murid</th>
+            <th>Jenis Kelamin</th>
+            <th>Ruangan & kelas</th>
             <th>Aksi</th>
             </tr>
         </thead>
@@ -113,6 +153,8 @@
             <td><?php echo $no++ ;?></td>
             <td><?php echo $row->nisn ;?></td>
             <td><?php echo $row->nama_murid ;?></td>
+            <td><?php echo $row->jenis_kelamin ;?></td>
+            <td><?php echo $row->nama_ruangan ;?></td>
             <td>
                 <a  href                 ="javascript:;"
                     data-nisn            ="<?php echo $row->nisn?>"

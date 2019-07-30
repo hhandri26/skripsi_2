@@ -12,7 +12,7 @@
             <form class="form-horizontal" action="<?php echo base_url('master/add_guru')?>" method="post" enctype="multipart/form-data" role="form">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label class="col-lg-4 col-sm-4 control-label">Kode Guru</label>
+                        <label class="col-lg-4 col-sm-4 control-label">NIP Guru</label>
                         <div class="col-lg-8">
                             <input type="text" class="form-control" id="kd_guru" name="kd_guru">
                         </div>
@@ -21,6 +21,25 @@
                         <label class="col-lg-4 col-sm-4 control-label">Nama Guru</label>
                         <div class="col-lg-8">
                             <input type="text" class="form-control" id="nama_guru" name="nama_guru">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-4 col-sm-4 control-label">Jenis Kelamin</label>
+                        <div class="col-lg-8">
+                            <select class="form-control" id="nama_guru" name="jenis_kelamin">
+                                <option value="L">Laki - laki</option>
+                                <option value="P">Perempuan</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-4 col-sm-4 control-label">Mata Pelajaran</label>
+                        <div class="col-lg-8">
+                            <select class="form-control" id="mapel" name="mapel">
+                                <?php foreach ($mapel as $row){;?>
+                                    <option value="<?php echo $row->id;?>"><?php echo $row->nama_mapel;?></option>
+                                <?php };?>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -55,6 +74,25 @@
                             <div class="col-lg-8">
                                 <input type="text" class="form-control" id="nama_guru" name="nama_guru">
                                 <input type="hidden" id="id" name="id">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 col-sm-4 control-label">Jenis Kelamin</label>
+                            <div class="col-lg-8">
+                                <select class="form-control" id="nama_guru" name="jenis_kelamin">
+                                    <option value="L">Laki - laki</option>
+                                    <option value="P">Perempuan</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 col-sm-4 control-label">Mata Pelajaran</label>
+                            <div class="col-lg-8">
+                                <select class="form-control" id="mapel" name="mapel">
+                                    <?php foreach ($mapel as $row){;?>
+                                        <option value="<?php echo $row->id;?>"><?php echo $row->nama_mapel;?></option>
+                                    <?php };?>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -102,8 +140,10 @@
         <thead>
             <tr>
             <th>No</th>
-            <th>Kode Guru</th>
+            <th>NIP Guru</th>
             <th>Nama Guru</th>
+            <th>Jenis Kelamin</th>
+            <th>Mata pelajaran </th>
             <th>Aksi</th>
             </tr>
         </thead>
@@ -113,10 +153,15 @@
             <td><?php echo $no++ ;?></td>
             <td><?php echo $row->kd_guru ;?></td>
             <td><?php echo $row->nama_guru ;?></td>
+            <td><?php echo $row->jenis_kelamin ;?></td>
+            <td><?php echo $row->nama_mapel ;?></td>
             <td>
                 <a  href                 ="javascript:;"
                     data-kd_guru         ="<?php echo $row->kd_guru ?>"
                     data-nama_guru       ="<?php echo $row->nama_guru ?>"
+                    data-jenis_kelamin   ="<?php echo $row->jenis_kelamin ?>"
+                    data-nama_mapel      ="<?php echo $row->nama_mapel ?>"
+                    data-mapel           ="<?php echo $row->mapel ?>"
                     data-id              ="<?php echo $row->id ?>"
                     data-toggle          ="modal"
                     data-target          ="#edit-data"
@@ -146,6 +191,9 @@
             var modal   = $(this)
             modal.find('#kd_guru').attr("value",div.data('kd_guru'));
             modal.find('#nama_guru').attr("value",div.data('nama_guru'));
+            modal.find('#jenis_kelamin').attr("value",div.data('jenis_kelamin'));
+            modal.find('#nama_mapel').attr("value",div.data('nama_mapel'));
+            modal.find('#mapel').attr("value",div.data('mapel'));
             modal.find('#id').attr("value",div.data('id'));
            
         });
