@@ -15,3 +15,8 @@
 <!-- summernote -->
  <link href="<?php echo base_url();?>assets/summernote/summernote.css" rel="stylesheet" />
  <script src="<?php echo base_url();?>assets/admin/bower_components/jquery/dist/jquery.min.js"></script>
+ <!-- select2 -->
+ <link rel="stylesheet" href="<?php echo base_url();?>assets/admin/select2/select2.min.css">
+ <link rel="stylesheet" href="<?php echo base_url();?>assets/admin/select2/select2-bootstrap.css">
+ <script src="<?php echo base_url();?>assets/admin/select2/select2.min.js"></script>
+ <script  src="<?php echo base_url();?>assets/admin/select2/select2_locale_id.js"></script>

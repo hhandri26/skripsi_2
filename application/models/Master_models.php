@@ -16,5 +16,15 @@ class Master_models extends CI_Model
         return $this->db->get();
 
     }
+
+    public function get_jadwal(){
+        $this->db->select('a.id, a.id_kelas, a.id_guru, a.id_matapelajaran, a.hari, a.waktu, b.nama_ruangan as kelas, c.nama_guru, d.nama_mapel');
+        $this->db->from('tb_jadwal a');
+        $this->db->join('tb_ruangan b','b.id = a.id_kelas','left');
+        $this->db->join('tb_guru c','c.id = a.id_guru','left');
+        $this->db->join('tb_mapel d','d.id = a.id_matapelajaran','left');
+        return $this->db->get();
+
+    }
     
 }

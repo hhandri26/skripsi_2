@@ -293,8 +293,12 @@ class Master extends CI_Controller
 
             public function jadwal()
             {
+                $data['guru']                   =$this->crud_models->get_all_data('tb_guru')->result();
+                $data['mapel']                  =$this->crud_models->get_all_data('tb_mapel')->result();
+                $data['kelas']                  =$this->crud_models->get_all_data('tb_ruangan')->result();
                 $data['admin']					= $this->db->get_where('admin', array('id' => 1))->row();
-                $data['table']                  = $this->crud_models->get_all_data('tb_jadwal')->result();
+                $data['table']                  = $this->master_models->get_jadwal()->result();
+
 				$data['script_top']    			= 'admin/script_top';
 				$data['script_bottom']  		= 'admin/script_btm';
 				$data['admin_nav']				= 'admin/admin_nav';
@@ -303,7 +307,29 @@ class Master extends CI_Controller
 				$data['content'] 				= 'master/jadwal';
 				$data['nav_top']				= 'master';
 				$data['nav_sub']				= 'jadwal';
-				$this->load->view('admin/jadwal', $data);
+				$this->load->view('admin/home', $data);
 
             }
+
+            public function add_jadwal()
+            {
+                $data = array(
+                    "id_kelas"	        => $this->input->post('id_kelas'),
+                    "id_guru"           => $this->input->post('id_guru'),
+                    "id_matapelajaran"	=> $this->input->post('id_matapelajaran'),
+                    "hari"              => $this->input->post('hari'),
+                    "waktu"             => $this->input->post('waktu')
+                );
+
+                if($this->crud_models->add_data($data,'tb_jadwal')){
+                    $this->session->set_flashdata('info', 'data berhasil di tambah!');				
+                    redirect('master/jadwal');
+
+                }else{
+                    $this->session->set_flashdata('danger', 'kesalahan menginput data');				
+                    redirect('master/jadwal');
+                }
+            }
+
+            
         }

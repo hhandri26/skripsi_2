@@ -43,6 +43,20 @@
        
       </ul>
     </li>
+    <li class="treeview <?php echo ($nav_top == 'class_meet')? $class :""; ?>">
+      <a href="#">
+        <i class="fa fa-university"></i>
+        <span>Jadwal Kelas Meeting</span>
+        <span class="pull-right-container">
+          <i class="fa fa-angle-left pull-right"></i>
+        </span>
+      </a>
+      <ul class="treeview-menu">
+        <li <?php echo ($nav_sub == 'class_meet')? $active :""; ?>>
+          <a href="<?php echo base_url('admin/class_meet');?>"><i class="fa fa-ellipsis-v"></i>Pertandingan Bola</a>
+        </li>       
+      </ul>
+    </li>
 
     <li class="treeview <?php echo ($nav_top == 'Laporan')? $class :""; ?>">
       <a href="#">
