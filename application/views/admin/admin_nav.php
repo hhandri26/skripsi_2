@@ -53,8 +53,11 @@
       </a>
       <ul class="treeview-menu">
         <li <?php echo ($nav_sub == 'class_meet')? $active :""; ?>>
-          <a href="<?php echo base_url('admin/class_meet');?>"><i class="fa fa-ellipsis-v"></i>Pertandingan Bola</a>
-        </li>       
+          <a href="<?php echo base_url('admin/class_meet');?>"><i class="fa fa-ellipsis-v"></i>Penjadwalan Kelas Meeting</a>
+        </li>
+        <li <?php echo ($nav_sub == 'role')? $active :""; ?>>
+          <a href="<?php echo base_url('admin/table_role');?>"><i class="fa fa-ellipsis-v"></i>Table Role</a>
+        </li>         
       </ul>
     </li>
 

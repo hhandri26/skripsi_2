@@ -51,23 +51,95 @@ class Admin extends CI_Controller
 			
 			public function prosess_jadwal()
 			{
-				$kelas = $this->input->post('kelas');
+				$after_kelas 			   = $this->input->post('kelas');
+				$nama_pertandingan = $this->input->post('nama_pertandingan');
+				if($nama_pertandingan=='' && $after_kelas==''){
+					$this->session->set_flashdata('danger', 'Nama pertandingan dan kelas harus dimasukan!');				
+                    redirect('admin/class_meet');
+				}
+				if($this->input->post('on_input')){
+					$date 	= date("Y-m-d H:i:s");
+					$kelas 	= $this->input->post('kelas');
+					if($kelas==''){
+						$this->session->set_flashdata('danger', 'Kelas harus dimasukan!');				
+						redirect('admin/class_meet');
+					}
+					
+
+					$data = array(
+									"nama_pertandingan" =>$nama_pertandingan,
+									"date" 				=>$date,
+								);
+					$this->crud_models->add_data($data,'tb_kelas_meeting');
+					// get last id
+					$get 	= $this->db->get_where('tb_kelas_meeting', array('date'=>$date))->row();
+					$id_h 	= $get->id;
+					$press 	= array();
+					// get rumus round robin
+					$schedule	= $this->scheduler($after_kelas);
+					foreach($schedule AS $round => $games){
+
+						$sch['hari'] 	= $round+1;
+						foreach($games AS $play){
+							
+							$sch =  $play["Home"]." - ".$play["Away"];
+							$no 	=	1;
+							$data_2 = array(
+								"id_kelas_meeting" => $id_h,
+								"hari" 			   =>$round+1,
+								"ronde" 		 	=>$no++,
+								"kelas" 			=> $sch
+
+							);
+							$this->crud_models->add_data($data_2,'tb_pertandingan');
+							
+						}
+						
+					
+						
+					}
+					$this->session->set_flashdata('info', 'data berhasil di tambah!');				
+                    redirect('admin/class_meet');
+				}else{
+					$kelas 				= $this->input->post('kelas');
+					$data['admin']		= $this->db->get_where('admin', array('id' => 1))->row();
+					$data['kelas']      =$this->crud_models->get_all_data('tb_ruangan')->result();
+					$data['kelas_val'] 		= $kelas;
+					$data['nama_pertandingan']= $nama_pertandingan;
+
+					// prosess round robin					
+					$data['schedule'] 	= $this->scheduler($kelas);
+					// var_dump($this->scheduler($kelas));
+					// die();
+					$data['script_top'] 	= 'admin/script_top';
+					$data['script_bottom']  = 'admin/script_btm';
+					$data['admin_nav']		= 'admin/admin_nav';
+					$data['judul'] 			= 'Class Meeting';
+					$data['sub_judul'] 		= 'jadwal';
+					$data['content'] 		= 'class_meet/table';
+					$data['nav_top']		= 'class_meet';
+					$data['nav_sub']		= 'class_meet';
+					$data['prosess'] 		= 'ok';
+					$this->load->view('admin/home', $data);
+
+				}
+				
+
+			}
+
+			public function table_role()
+			{
 				$data['admin']					= $this->db->get_where('admin', array('id' => 1))->row();
-				$data['kelas']                  =$this->crud_models->get_all_data('tb_ruangan')->result();	
-				$push 	= array();		
-				// prosess round robin
-				
-				
-				$data['schedule'] 				= $this->scheduler($kelas);
+				$data['table']                  = $this->admin_models->get_data_role()->result();
 				$data['script_top']    			= 'admin/script_top';
 				$data['script_bottom']  		= 'admin/script_btm';
 				$data['admin_nav']				= 'admin/admin_nav';
 				$data['judul'] 					= 'Class Meeting';
 				$data['sub_judul'] 				= 'jadwal';
-				$data['content'] 				= 'class_meet/table';
+				$data['content'] 				= 'class_meet/result';
 				$data['nav_top']				= 'class_meet';
-				$data['nav_sub']				= 'class_meet';
-				$data['prosess'] 				= 'ok';
+				$data['nav_sub']				= 'role';
+				$data['prosess'] 				= 'no';
 				$this->load->view('admin/home', $data);
 
 			}

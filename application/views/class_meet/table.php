@@ -1,9 +1,17 @@
+<div class="box-body">
 <form class="form-horizontal" action="<?php echo base_url('admin/prosess_jadwal')?>" method="post" >
+    <div class="form-group">
+        <label class="col-lg-4 col-sm-4 control-label">Nama Pertandingan</label>
+        <div class="col-lg-8">
+            <input type="text" name="nama_pertandingan" class="form-control" value="<?php echo $nama_pertandingan;?>"> 
+        </div>
+    </div>
     <div class="form-group">
         <label class="col-lg-4 col-sm-4 control-label">Pilih Kelas Yang Ikut Serta </label>
         <div class="col-lg-8">
             
-            <select class="form-control" id="select_kelas" name="kelas[]" multiple="multiple">
+            
+            <select class="form-control" id="select_kelas" name="kelas[]" multiple="multiple" require="">
             <?php foreach($kelas as $row){?>
                 <option value="<?php echo $row->nama_ruangan ?>"><?php echo $row->nama_ruangan;?></option>
             <?php }?>
@@ -11,8 +19,21 @@
             
         </div>
     </div>
-    <input type="submit" name="submit" class="btn btn-info" value="Lihat Jadwal">
+    <div class="form-group">
+        <label class="col-lg-4 col-sm-4 control-label"> </label>
+        <div class="col-lg-4">
+           <input type="submit" name="submit" class="btn btn-warning" value="Lihat Jadwal">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-4 col-sm-4 control-label"> </label>
+        <div class="col-lg-4">
+           <input type="submit" name="on_input" class="btn btn-info" value="Input">
+        </div>
+    </div>
+    
 </form>
+</div>
 
 
 <?php if($prosess=='ok'){?>
