@@ -30,7 +30,7 @@
 
 		public function get_data_role()
 		{
-			$this->db->select('a.id, a.id_kelas_meeting, a.hari, a.ronde, a.kelas, b.nama_pertandingan');
+			$this->db->select('a.id, a.id_kelas_meeting, a.hari, a.ronde, a.kelas, b.nama_pertandingan,b.jenis_olahraga');
 			$this->db->from('tb_pertandingan a');
 			$this->db->join('tb_kelas_meeting b', 'a.id_kelas_meeting = b.id','left');
 			$this->db->order_by('b.nama_pertandingan');
@@ -64,11 +64,7 @@
 
 		}
 
-		public function get_all_jadwal()
-		{
-			
-
-		}
+	
 
 
 	}

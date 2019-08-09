@@ -53,8 +53,9 @@ class Admin extends CI_Controller
 			
 			public function prosess_jadwal()
 			{
-				$after_kelas 			   = $this->input->post('kelas');
-				$nama_pertandingan = $this->input->post('nama_pertandingan');
+				$after_kelas 		= $this->input->post('kelas');
+				$nama_pertandingan 	= $this->input->post('nama_pertandingan');
+				$jenis_olahraga 	= $this->input->post('jenis_olahraga');
 				if($nama_pertandingan=='' && $after_kelas==''){
 					$this->session->set_flashdata('danger', 'Nama pertandingan dan kelas harus dimasukan!');				
                     redirect('admin/class_meet');
@@ -70,6 +71,7 @@ class Admin extends CI_Controller
 
 					$data = array(
 									"nama_pertandingan" =>$nama_pertandingan,
+									"jenis_olahraga"	=>$jenis_olahraga,
 									"date" 				=>$date,
 								);
 					$this->crud_models->add_data($data,'tb_kelas_meeting');
@@ -182,6 +184,10 @@ class Admin extends CI_Controller
 				}elseif($type=='ruangan'){
 					$data['ruangan']		=$this->crud_models->get_all_data('tb_ruangan')->result();
 					$html = $this->load->view('cetak/ruangan', $data, true);
+
+				}elseif($type=='classmeet'){
+					$data['classmeet']		= $this->admin_models->get_data_role()->result();
+					$html = $this->load->view('cetak/classmeet', $data, true);
 
 				}else{
 					$data['jadwal']		=$this->master_models->get_jadwal()->result();

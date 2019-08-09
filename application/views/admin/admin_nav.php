@@ -46,7 +46,7 @@
     <li class="treeview <?php echo ($nav_top == 'class_meet')? $class :""; ?>">
       <a href="#">
         <i class="fa fa-university"></i>
-        <span>Jadwal Kelas Meeting</span>
+        <span>Jadwal Class Meeting</span>
         <span class="pull-right-container">
           <i class="fa fa-angle-left pull-right"></i>
         </span>
