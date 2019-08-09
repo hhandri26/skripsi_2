@@ -107,11 +107,11 @@
             <td><?php echo $row->hari ;?></td>
             <td><?php echo $row->waktu ;?></td>
             <td>
-                <a href="#" class="btn btn-info btn-sm">
+                <a href="<?php echo base_url('master/edit_jadwal/'.$row->id);?>" class="btn btn-info btn-sm">
                     <i class="glyphicon glyphicon-pencil"></i> 
                 </a>
 
-                <a href ="#" class="btn btn-danger btn-sm">
+                <a href ="<?php echo base_url('master/hapus_jadwal/'.$row->id);?>" class="btn btn-danger btn-sm" onclick="return confirm('Hapus ini ?');">
                     <i class="fa fa-trash"></i> 
                 </a>
             </td>

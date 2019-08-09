@@ -37,5 +37,38 @@
 			return $this->db->get();
 		}
 
+		public function get_data_guru()
+		{
+			$this->db->select('a.id, a.kd_guru, a.nama_guru, a.jenis_kelamin, a.mapel, b.nama_mapel');
+			$this->db->from('tb_guru a');
+			$this->db->join('tb_mapel b', 'a.mapel = b.id','left');
+			$this->db->order_by('a.nama_guru');
+			return $this->db->get();
+		}
+		public function get_data_murid()
+		{
+			$this->db->select('a.id, a.nisn, a.nama_murid, a.kelas, a.jenis_kelamin, b.nama_ruangan');
+			$this->db->from('tb_murid a');
+			$this->db->join('tb_ruangan b', 'a.kelas = b.id','left');
+			$this->db->order_by('b.nama_ruangan');
+			return $this->db->get();
+		}
+
+		public function get_data_mapel()
+		{
+			$this->db->select('a.id, a.nisn, a.nama_murid, a.kelas, a.jenis_kelamin, b.nama_ruangan');
+			$this->db->from('tb_murid a');
+			$this->db->join('tb_ruangan b', 'a.kelas = b.id','left');
+			$this->db->order_by('b.nama_ruangan');
+			return $this->db->get();
+
+		}
+
+		public function get_all_jadwal()
+		{
+			
+
+		}
+
 
 	}

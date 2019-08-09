@@ -71,19 +71,19 @@
       </a>
       <ul class="treeview-menu">
         <li <?php echo ($nav_sub == 'guru')? $active :""; ?>>
-          <a href="<?php echo base_url('laporan/guru');?>"><i class="fa fa-ellipsis-v"></i>Data Guru</a>
+          <a href="<?php echo base_url('admin/cetak/guru');?>"><i class="fa fa-ellipsis-v"></i>Data Guru</a>
         </li>
         <li <?php echo ($nav_sub == 'mapel')? $active :""; ?>>
-          <a href="<?php echo base_url('laporan/mapel');?>"><i class="fa fa-ellipsis-v"></i>Data Mata Pelajaran</a>
+          <a href="<?php echo base_url('admin/cetak/mapel');?>"><i class="fa fa-ellipsis-v"></i>Data Mata Pelajaran</a>
         </li>
         <li <?php echo ($nav_sub == 'ruangan')? $active :""; ?>>
-          <a href="<?php echo base_url('laporan/ruangan');?>"><i class="fa fa-ellipsis-v"></i>Data Ruangan</a>
+          <a href="<?php echo base_url('admin/cetak/ruangan');?>"><i class="fa fa-ellipsis-v"></i>Data Ruangan</a>
         </li>
         <li <?php echo ($nav_sub == 'murid')? $active :""; ?>>
-          <a href="<?php echo base_url('laporan/murid');?>"><i class="fa fa-ellipsis-v"></i>Data Murid</a>
+          <a href="<?php echo base_url('admin/cetak/murid');?>"><i class="fa fa-ellipsis-v"></i>Data Murid</a>
         </li>
         <li <?php echo ($nav_sub == '')? $active :""; ?>>
-          <a href="<?php echo base_url('laporan/murid');?>"><i class="fa fa-ellipsis-v"></i>Jadwal Mata Pelajaran</a>
+          <a href="<?php echo base_url('admin/cetak/jadwal');?>"><i class="fa fa-ellipsis-v"></i>Jadwal Mata Pelajaran</a>
         </li>
        
       </ul>

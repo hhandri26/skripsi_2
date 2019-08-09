@@ -331,5 +331,60 @@ class Master extends CI_Controller
                 }
             }
 
+            public function edit_jadwal($id)
+            {
+                $data['guru']                   =$this->crud_models->get_all_data('tb_guru')->result();
+                $data['mapel']                  =$this->crud_models->get_all_data('tb_mapel')->result();
+                $data['kelas']                  =$this->crud_models->get_all_data('tb_ruangan')->result();
+                $data['admin']					= $this->db->get_where('admin', array('id' => 1))->row();
+                $data['edit']                   = $this->master_models->get_data_jadwal($id)->row();
+
+				$data['script_top']    			= 'admin/script_top';
+				$data['script_bottom']  		= 'admin/script_btm';
+				$data['admin_nav']				= 'admin/admin_nav';
+				$data['judul'] 					= 'Master';
+				$data['sub_judul'] 				= 'jadwal';
+				$data['content'] 				= 'master/edit_jadwal';
+				$data['nav_top']				= 'master';
+				$data['nav_sub']				= 'jadwal';
+				$this->load->view('admin/home', $data);
+
+            }
+
+            public function update_jadwal()
+            {
+                $id 		= $this->input->post('id');
+                $data = array(
+                    "id_kelas"	        => $this->input->post('id_kelas'),
+                    "id_guru"           => $this->input->post('id_guru'),
+                    "id_matapelajaran"	=> $this->input->post('id_matapelajaran'),
+                    "hari"              => $this->input->post('hari'),
+                    "waktu"             => $this->input->post('waktu')
+                );
+
+                if($this->crud_models->edit_data($data,$id,'tb_jadwal')){
+                    $this->session->set_flashdata('info', 'data berhasil di update!');				
+                    redirect('master/jadwal');
+
+                }else{
+                    $this->session->set_flashdata('danger', 'kesalahan menginput data');				
+                    redirect('master/jadwal');
+                }
+
+            }
+
+            public function hapus_jadwal($id)
+            {
+                if($this->crud_models->delete_data($id,'tb_jadwal')){
+					$this->session->set_flashdata('info', 'data berhasil di update!');				
+					redirect('master/jadwal');
+
+				}else{
+					$this->session->set_flashdata('danger', 'kesalahan menginput data');				
+					redirect('master/jadwal');
+				}
+
+            }
+
             
         }

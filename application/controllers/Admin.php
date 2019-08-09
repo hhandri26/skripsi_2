@@ -8,8 +8,10 @@ class Admin extends CI_Controller
 				parent::__construct();
 				$this->load->helper('form', 'security');
 				$this->load->library('form_validation');
+				$this->load->library('pdf');
 				$this->load->model('admin_models');
 				$this->load->model('security_models');
+				$this->load->model('master_models');
 				$this->load->model('crud_models');
 
 				$this->security_models->get_security();
@@ -161,6 +163,31 @@ class Admin extends CI_Controller
 					}
 				}
 				return $round;
+			}
+
+			public function cetak($type){
+				if($type=='guru'){
+					$data['guru']		=$this->admin_models->get_data_guru()->result();
+					$html = $this->load->view('cetak/guru', $data, true);
+
+				}elseif($type=='murid'){
+					$data['murid']		=$this->admin_models->get_data_murid()->result();
+					$html = $this->load->view('cetak/murid', $data, true);
+					
+
+				}elseif($type=='mapel'){
+					$data['mapel']		=$this->crud_models->get_all_data('tb_mapel')->result();
+					$html = $this->load->view('cetak/mapel', $data, true);
+
+				}elseif($type=='ruangan'){
+					$data['ruangan']		=$this->crud_models->get_all_data('tb_ruangan')->result();
+					$html = $this->load->view('cetak/ruangan', $data, true);
+
+				}else{
+					$data['jadwal']		=$this->master_models->get_jadwal()->result();
+					$html = $this->load->view('cetak/jadwal', $data, true);
+				} 				
+				$this->pdf->generate($html,'contoh');
 			}
 			
 		}
