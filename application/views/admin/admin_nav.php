@@ -15,7 +15,7 @@
       </ul>
     </li>
     
-
+  <?php if($this->session->userdata('level')==1){?>
     <li class="treeview <?php echo ($nav_top == 'master')? $class :""; ?>">
       <a href="#">
         <i class="fa fa-university"></i>
@@ -88,5 +88,37 @@
        
       </ul>
     </li>
+  <?php }elseif($this->session->userdata('kelas')){?>
+    <li class="treeview <?php echo ($nav_top == 'Laporan')? $class :""; ?>">
+        <a href="#">
+          <i class="fa fa-file-pdf-o"></i>
+          <span>Cetak</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li <?php echo ($nav_sub == 'mapel')? $active :""; ?>>
+            <a href="<?php echo base_url('admin/cetak_mapel_murid/'.$this->session->userdata('kelas'));?>"><i class="fa fa-ellipsis-v"></i>Cetak Jadwal Mata Pelajaran</a>
+          </li>
+        </ul>
+      </li>
+  <?php }else{ ?>
+      <li class="treeview <?php echo ($nav_top == 'Laporan')? $class :""; ?>">
+        <a href="#">
+          <i class="fa fa-file-pdf-o"></i>
+          <span>Cetak</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li <?php echo ($nav_sub == 'mapel')? $active :""; ?>>
+            <a href="<?php echo base_url('admin/cetak_mapel_guru/'.$this->session->userdata('id_guru'));?>"><i class="fa fa-ellipsis-v"></i>Cetak Jadwal Mata Pelajaran</a>
+          </li>
+        </ul>
+      </li>
+    
+  <?php }?>
 
 </ul>

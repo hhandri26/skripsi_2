@@ -5,7 +5,7 @@
       <div class="info-box">
         
         <div class="info-box-content">
-          <span class="info-box-text"><h1><strong>Selamat Datang<strong></h1></span>
+          <span class="info-box-text"><h1><strong>Selamat Datang<strong> <br><?php echo $this->session->userdata('username');?></h1></span>
           <!-- <img src="#"> -->
         </div>
       </div>

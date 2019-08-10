@@ -15,7 +15,9 @@
 					foreach ($querry->result() as $row) 
 					{
 						$sess = array('username' => $row->username,
-									  'password' => $row->password);
+									  'password' => $row->password,
+									  'level' => $row->level
+									);
 						$this->session->set_userdata($sess);
 						$this->session->set_flashdata('info', 'login sukses');
 						redirect('admin');
@@ -25,6 +27,54 @@
 						$this->session->set_flashdata('info', 'username dan password salah');
 						redirect('login');
 					} 
+
+		}
+
+		public function getlogin_murid($username, $password){
+			$this->db->where('nisn', $username);
+			$this->db->where('password', $password);
+			$querry 	= $this->db->get('tb_murid');
+			if($querry->num_rows()>0)
+				{
+					foreach ($querry->result() as $row) 
+					{
+						$sess = array('username' => $row->nama_murid,
+									  'password' => $row->password,
+									  'kelas' => $row->kelas
+									);
+						$this->session->set_userdata($sess);
+						$this->session->set_flashdata('info', 'login sukses');
+						redirect('admin');
+					}
+				}else 
+					{
+						$this->session->set_flashdata('info', 'username dan password salah');
+						redirect('login');
+					}
+
+		}
+		public function getlogin_guru($username, $password){
+			$this->db->where('kd_guru', $username);
+			$this->db->where('password', $password);
+			$querry 	= $this->db->get('tb_guru');
+			if($querry->num_rows()>0)
+				{
+					foreach ($querry->result() as $row) 
+					{
+						$sess = array('username' => $row->nama_guru,
+									  'password' => $row->password,
+									  'kd_guru' => $row->kd_guru,
+									  'id_guru' =>$row->id
+									);
+						$this->session->set_userdata($sess);
+						$this->session->set_flashdata('info', 'login sukses');
+						redirect('admin');
+					}
+				}else 
+					{
+						$this->session->set_flashdata('info', 'username dan password salah');
+						redirect('login');
+					}
 
 		}
 

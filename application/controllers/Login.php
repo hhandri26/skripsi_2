@@ -22,7 +22,21 @@ class Login extends CI_Controller
         $password 	= xss_clean($this->input->post('password'));
 
         $adm 		= $this->db->get_where('admin', array('username'=>$username))->row();
-        $this->admin_models->getlogin($username, $password);
+        $murid      = $this->db->get_where('tb_murid', array('nisn'=>$username))->row();
+        $guru       = $this->db->get_where('tb_guru', array('kd_guru'=>$username))->row();
+
+        $status	 	= $adm->level;
+        $status2    = $murid->nisn;
+        $status3    = $guru->kd_guru;
+        if($this->db->get_where('admin', array('level'=>$status))->row()){
+            $this->admin_models->getlogin($username, $password);
+        }elseif($this->db->get_where('tb_murid', array('nisn'=>$status2))->row()){
+            $this->admin_models->getlogin_murid($username, $password);
+        }else{
+            $this->admin_models->getlogin_guru($username, $password);
+
+        }
+       
        			
     }
 

@@ -39,7 +39,10 @@ class Master extends CI_Controller
                     "kd_guru"	=> $this->input->post('kd_guru'),
                     "nama_guru" => $this->input->post('nama_guru'),
                     "jenis_kelamin" => $this->input->post('jenis_kelamin'),
-                    "mapel" => $this->input->post('mapel')
+                    "mapel" => $this->input->post('mapel'),
+                    "alamat" => $this->input->post('alamat'),
+                    "tgl_lahir" => $this->input->post('tgl_lahir'),
+                    "password" =>$this->converPassword(date($this->input->post('tgl_lahir')))
                 );
 
                 if($this->crud_models->add_data($data,'tb_guru')){
@@ -60,7 +63,10 @@ class Master extends CI_Controller
                                         "kd_guru"	=> $this->input->post('kd_guru'),
                                         "nama_guru" => $this->input->post('nama_guru'),
                                         "jenis_kelamin" => $this->input->post('jenis_kelamin'),
-                                        "mapel" => $this->input->post('mapel')
+                                        "mapel" => $this->input->post('mapel'),
+                                        "alamat" => $this->input->post('alamat'),
+                                        "tgl_lahir" => $this->input->post('tgl_lahir'),
+                                        "password" =>$this->converPassword(date($this->input->post('tgl_lahir')))
                                     );
 
 				if($this->crud_models->edit_data($data,$id,'tb_guru')){
@@ -244,7 +250,10 @@ class Master extends CI_Controller
                     "nisn"	=> $this->input->post('nisn'),
                     "nama_murid" => $this->input->post('nama_murid'),
                     "jenis_kelamin"	=> $this->input->post('jenis_kelamin'),
-                    "kelas" => $this->input->post('kelas')
+                    "kelas" => $this->input->post('kelas'),
+                    "alamat" => $this->input->post('alamat'),
+                    "tgl_lahir" => $this->input->post('tgl_lahir'),
+                    "password" =>$this->converPassword(date($this->input->post('tgl_lahir')))
                 );
 
                 if($this->crud_models->add_data($data,'tb_murid')){
@@ -263,7 +272,10 @@ class Master extends CI_Controller
                 $id 		= $this->input->post('id');
 				$data       = array(
                                         "nisn"	=> $this->input->post('nisn'),
-                                        "nama_murid" => $this->input->post('nama_murid')
+                                        "nama_murid" => $this->input->post('nama_murid'),
+                                        "alamat" => $this->input->post('alamat'),
+                                        "tgl_lahir" => $this->input->post('tgl_lahir'),
+                                        "password" =>$this->converPassword(date($this->input->post('tgl_lahir')))
                                     );
 
 				if($this->crud_models->edit_data($data,$id,'tb_murid')){
@@ -384,6 +396,15 @@ class Master extends CI_Controller
 					redirect('master/jadwal');
 				}
 
+            }
+
+            function converPassword($getDate)
+            {
+                $arrDate    = explode("-", $getDate);
+                if(is_array($arrDate)){
+                    $date = $arrDate[2].$arrDate[1].$arrDate[0];
+                }      
+                return $date;
             }
 
             

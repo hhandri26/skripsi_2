@@ -33,6 +33,8 @@ class Admin extends CI_Controller
 				$this->load->view('admin/home', $data);
 			}
 
+			
+
 			public function class_meet()
             {
                 $data['admin']					= $this->db->get_where('admin', array('id' => 1))->row();
@@ -194,6 +196,19 @@ class Admin extends CI_Controller
 					$html = $this->load->view('cetak/jadwal', $data, true);
 				} 				
 				$this->pdf->generate($html,'contoh');
+			}
+
+			public function cetak_mapel_murid($id){
+				$data['jadwal']		=$this->master_models->get_jadwal_murid($id)->result();
+				$html = $this->load->view('cetak/jadwal', $data, true);
+				$this->pdf->generate($html,'contoh');
+
+			}
+			public function cetak_mapel_guru($id){
+				$data['jadwal']		=$this->master_models->get_jadwal_guru($id)->result();
+				$html = $this->load->view('cetak/jadwal', $data, true);
+				$this->pdf->generate($html,'contoh');
+
 			}
 			
 		}

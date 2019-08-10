@@ -14,7 +14,7 @@
   <header class="main-header">
     <a href="index2.html" class="logo">
       <span class="logo-mini"><b>A</b>DM</span>
-      <span class="logo-lg"><b>Admin</b></span>
+      <span class="logo-lg"><b><?php echo $this->session->userdata('username');?></b></span>
     </a>
     <nav class="navbar navbar-static-top">
       <!-- Sidebar toggle button-->
@@ -28,13 +28,13 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="<?php echo base_url('assets/img/avatar-33.jpg');?>" class="user-image" alt="User Image">
-              <span class="hidden-xs">Admin</span>
+              <span class="hidden-xs"><?php echo $this->session->userdata('username');?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
                 <img src="<?php echo base_url('assets/img/avatar-33.jpg');?>" class="img-circle" alt="User Image">
-                <p>Admin<small>2019</small></p>
+                <p><?php echo $this->session->userdata('username');?><small>2019</small></p>
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-right">
@@ -96,8 +96,6 @@
     <strong>Copyright &copy; 2019 <a href="mailto:handrisaeputra@gmail.com"></a>.</strong> All rights
     reserved.
   </footer>
-
- >
 
 </div>
 <?php $this->load->view($script_bottom); ?>
